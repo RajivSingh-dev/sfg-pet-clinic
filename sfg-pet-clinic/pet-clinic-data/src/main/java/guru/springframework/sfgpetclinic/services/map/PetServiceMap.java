@@ -19,14 +19,11 @@ public class PetServiceMap extends AbstractMapService<Pet,Long> implements PetSe
         return super.findById(id);
     }
 
-    @Override
-    public Pet save(Pet object) {
-        return null;
-    }
+
 
     @Override
-    public Pet save(Long id,Pet object) {
-        return super.save(id,object);
+    public Pet save(Pet object) {
+        return super.save(object);
     }
 
     @Override
