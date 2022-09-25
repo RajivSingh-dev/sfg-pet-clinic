@@ -17,10 +17,10 @@ public class OwnerApiController {
     public OwnerApiController(OwnerService ownerService) {
         this.ownerService = ownerService;
     }
-    @GetMapping("/data")
+    @GetMapping("/ownerdata")
     public Set<Owner> getOwnerData()
     {
-        Set<Owner> ownerList = ownerService.findAll();
-        return ownerList;
+        Set<Owner> ownerSet = ownerService.findAll();
+        return ownerSet;
     }
 }
