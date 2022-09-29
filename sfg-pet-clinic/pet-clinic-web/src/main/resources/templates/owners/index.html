@@ -7,10 +7,11 @@
 
 </head>
 <body>
+
 <h2>
   List of Pet Owners
 </h2>
-<table>
+<table id="owners" class="table table-striped">
     <thead>
     <tr>
         <th style="width: 150px">Id</th>
@@ -24,5 +25,7 @@
 </table>
 <div id="set">
 </div>
+<script th:src="@{/js/Main.js}"></script>
+<script type="text/javascript">getOwnerData() </script>
 </body>
 </html>

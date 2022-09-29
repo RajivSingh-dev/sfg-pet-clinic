@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="~{fragments/layout :: layout (~{::body},'vets')}">
 <head>
     <meta charset="UTF-8">
     <title>List of Vets </title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script th:src="@{/js/Main.js}"></script>
-    <script type="text/javascript">getVetData() </script>
+
 </head>
 <body>
+
 <h1>
     List of Vets
 </h1>
-<table>
+<table id="vets" class="table table-striped">
     <thead>
     <tr>
         <th>Id</th>
@@ -20,10 +19,11 @@
     </tr>
     </thead>
     <tbody id="row">
-
     </tbody>
 </table>
 <div id="set">
 </div>
+<script th:src="@{/js/Main.js}"></script>
+<script type="text/javascript">getVetData() </script>
 </body>
 </html>
