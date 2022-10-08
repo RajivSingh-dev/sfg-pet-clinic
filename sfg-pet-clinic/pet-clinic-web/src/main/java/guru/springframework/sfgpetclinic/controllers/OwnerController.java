@@ -3,16 +3,24 @@ package guru.springframework.sfgpetclinic.controllers;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/owners")
 public class OwnerController
 {
 
 
-    @GetMapping({"/owners","/owners/index","/owners/index.html"})
+    @GetMapping({"/index","/index.html"})
     public String listOwners()
     {
         return "owners/index";
+    }
+
+    @GetMapping({"/find"})
+    public String findOwners()
+    {
+        return "notimplemented";
     }
 
 }
