@@ -9,7 +9,7 @@ public class Person extends BaseEntity{
     @Column(name = "first_name")
     private String firstName;
 
-    private String lastName;
+     private String lastName;
 
     public String getFirstName() {
         return firstName;
