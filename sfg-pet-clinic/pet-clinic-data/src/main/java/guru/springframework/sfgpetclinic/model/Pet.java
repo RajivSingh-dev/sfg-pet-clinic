@@ -1,11 +1,13 @@
 package guru.springframework.sfgpetclinic.model;
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+
 
 @Setter
 @Getter
@@ -23,6 +25,7 @@ public class Pet extends BaseEntity{
     private PetType petType;
     @ManyToOne
     @JoinColumn(name = "owner_id")
+    @JsonIgnore
     private Owner owner;
 
     @Column(name = "birth_date")

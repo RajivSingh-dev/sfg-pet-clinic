@@ -1,5 +1,6 @@
 package guru.springframework.sfgpetclinic.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class Visit extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "pet_id")
+    @JsonIgnore
     private Pet pet;
 
 
