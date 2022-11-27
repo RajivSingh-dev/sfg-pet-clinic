@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+
+<body>
+
+<h2>Owners</h2>
+
+<table  class="table table-striped">
+  <thead>
+  <tr>
+    <th style="width: 150px;">Name</th>
+    <th style="width: 200px;">Address</th>
+    <th>City</th>
+    <th style="width: 120px">Telephone</th>
+    <th>Pets</th>
+  </tr>
+  </thead>
+  <tbody id="owners">
+
+  </tbody>
+</table>
+<div >
+  <span>Pages:</span>
+  <span></span>
+  <span >
+      <a></a>
+      <span></span>
+    </span>
+  <span></span>
+  <span>
+      <a ></a>
+      <span  title="First" class="fa fa-fast-backward"></span>
+    </span>
+  <span>
+      <a  title="Previous"
+         class="fa fa-step-backward"></a>
+      <span  title="Previous" class="fa fa-step-backward"></span>
+    </span>
+  <span>
+      <a  title="Next"
+         class="fa fa-step-forward"></a>
+      <span  title="Next" class="fa fa-step-forward"></span>
+    </span>
+  <span>
+      <a  title="Last"
+         class="fa fa-fast-forward"></a>
+      <span  title="Last" class="fa fa-step-forward"></span>
+    </span>
+</div>
+<script th:src="@{/js/Main.js}"></script>
+<script type="text/javascript">getOwnerData() </script>
+</body>
+</html>
+
