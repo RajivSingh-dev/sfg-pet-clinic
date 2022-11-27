@@ -4,6 +4,7 @@ package guru.springframework.sfgpetclinic.controllers;
 import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -23,4 +24,13 @@ public class OwnerApiController {
         Set<Owner> ownerSet = ownerService.findAll();
         return ownerSet;
     }
+
+    @GetMapping("/owner")
+    public Owner getOwnerById(@RequestParam String ownerId)
+    {
+        Owner owner = ownerService.findById(Long.valueOf(ownerId));
+        return owner;
+    }
+
+
 }

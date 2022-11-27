@@ -6,21 +6,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/owners")
+@RequestMapping
 public class OwnerController
 {
 
 
-    @GetMapping({"/index","/index.html"})
+    @GetMapping({"/owners","/index.html"})
     public String listOwners()
     {
-        return "owners/index";
+        return "owners/ownersList";
     }
 
     @GetMapping({"/find"})
     public String findOwners()
     {
-        return "notimplemented";
+        return "owners/findOwners";
+    }
+
+    @GetMapping({"/ownerDetails"})
+    public String getOwnerDetailsById()
+    {
+        return "owners/ownerDetails";
     }
 
 }
