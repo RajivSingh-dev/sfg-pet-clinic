@@ -50,9 +50,11 @@
             <span>Home</span>
           </li>
 
-          <li th:replace="::menuItem ('/owners/find','owners','find owners','search','Find owners')">
-            <span class="fa fa-search" aria-hidden="true"></span>
-            <span>Find owners</span>
+          <li class="nav-item">
+            <a class="nav-link"  href="#" onclick="redirect('find')" title="find owners">
+              <span class="fa fa-search"></span>
+              <span>Find owners</span>
+            </a>
           </li>
 
           <li th:replace="::menuItem ('/vets.html','vets','veterinarians','th-list','Veterinarians')">
@@ -88,7 +90,7 @@
   </div>
 
   <script th:src="@{/webjars/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
-
+  <script th:src="@{/js/Main.js}"></script>
 </body>
 
 </html>
