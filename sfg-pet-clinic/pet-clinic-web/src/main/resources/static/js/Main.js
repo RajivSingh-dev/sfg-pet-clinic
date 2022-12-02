@@ -129,21 +129,26 @@ function getPetById(){
 
 function submitPetData()
 {
+    let pet  = new Object();
     let url = new URL(window.location.href);
     const params = url.searchParams;
     let ownerId = params.get('ownerId');
     let petId = params.get('ownerId');
 
+
+
     $.ajax({
         type: "POST",
         contentType: "application/json",
         url: "/submitPetData?ownerId="+ownerId+"&petId="+petId,
-        data: JSON.stringify({'name':$("#name").val(),'dob':$("#dob").val(data.birthDate),'petTypes': $('#petTypes').find(":selected").val()}),
+        data: JSON.stringify({'name':$("#name").val(),
+            'birthDate':$("#dob").val(),
+            'petType': $('#petTypes').find(":selected").val() ,'id': Number($('#id').val())}),
         dataType: 'json',
         success:function (){
             ownerDetailsView(ownerId);
         },
-        error: function (){
+        error: function (e){
             console.log("ERROR : ", e);
         }
     })

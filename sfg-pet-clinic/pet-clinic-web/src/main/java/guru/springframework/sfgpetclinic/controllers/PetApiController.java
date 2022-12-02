@@ -2,10 +2,7 @@ package guru.springframework.sfgpetclinic.controllers;
 
 import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.services.PetService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PetApiController {
@@ -21,7 +18,7 @@ public class PetApiController {
     {
       return petService.findByPetIdAndOwnerId(petId,ownerId);
     }
-    @GetMapping({"/submitPetData"})
+    @PostMapping({"/submitPetData"})
     public Pet updatePetById(@RequestParam  Long ownerId, @RequestBody Pet pet)
     {
       return petService.updateByPetIdAndOwnerId(ownerId,pet);
