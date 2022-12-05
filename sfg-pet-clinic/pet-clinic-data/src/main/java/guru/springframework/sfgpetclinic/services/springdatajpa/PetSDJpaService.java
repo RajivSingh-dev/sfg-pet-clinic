@@ -43,14 +43,12 @@ public class PetSDJpaService implements PetService {
     public Pet updateByPetIdAndOwnerId(Long ownerId,Pet pet) {
         Optional<Owner> ownerOptional = ownerRepository.findById(ownerId);
 
-
-
             if(!ownerOptional.isPresent())
-        {
-            System.out.println("owner id not present");
-        }
-        else
-        {
+            {
+              return new Pet();
+            }
+            else
+          {
             Owner owner = ownerOptional.get();
             Optional<Pet> petOptional = owner.getPets().stream().filter(pet1 -> pet1.getId().equals(pet.getId())).findFirst();
          if(petOptional.isPresent()) {
@@ -67,11 +65,18 @@ public class PetSDJpaService implements PetService {
              owner.addPet(pet);
 
          }
+              Owner savedPet = ownerRepository.save(owner);
+
+              Optional<Pet> savedPetOptional = savedPet.getPets().stream().filter(pet1 -> pet1.getId().equals(pet.getId())).findFirst();
 
 
+
+              return savedPetOptional.get();
         }
 
-         return ownerOptional.get().getPets().stream().filter(pet1 -> pet1.getId().equals(pet.getId())).findFirst().get();
+
+
+
     }
 
 }
