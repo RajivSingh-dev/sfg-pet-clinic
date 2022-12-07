@@ -2,31 +2,32 @@
 
 
 function redirect(url){
-    window.location.href = "/" + url
+    window.location.href = "/" + url;
 }
 
-function getOwnerData()
+function  getOwnerData()
 {
+    let url = new URL(window.location.href);
+    const params = url.searchParams;
+    let lastName = params.get('lastName');
 
     $.ajax({
-      type: "GET",
-      contentType: "application/json",
-        url: "/ownerdata",
+        type: "GET",
+        contentType: "application/json",
+        url: "/ownerdata?lastName="+lastName,
         dataType: 'json',
-      success:function (data){
-
-          for (let i = 0; i <data.length ; i++) {
-
-             let names = data[i].pets.map((item) => item.name);
-              $("#owners").append("<tr></tr>");
-              $("#owners tr:last").append("<td><a href='#' onclick='ownerDetailsView("+data[i].id+")'>"+data[i].firstName+" "+data[i].lastName+"</a></td>");
-              $("#owners tr:last").append("<td>"+data[i].address+"</td>");
-              $("#owners tr:last").append("<td>"+data[i].city+"</td>");
-              $("#owners tr:last").append("<td>"+data[i].telephone+"</td>");
-              $("#owners tr:last").append("<td>"+names.join(' ')+"</td>");
+        success:function (data){
+              for (let i = 0; i <data.length ; i++) {
+                  let names = data[i].pets.map((item) => item.name);
+                  $("#owners").append("<tr></tr>");
+                  $("#owners tr:last").append("<td><a href='#' onclick='ownerDetailsView("+data[i].id+")'>"+data[i].firstName+" "+data[i].lastName+"</a></td>");
+                  $("#owners tr:last").append("<td>"+data[i].address+"</td>");
+                  $("#owners tr:last").append("<td>"+data[i].city+"</td>");
+                  $("#owners tr:last").append("<td>"+data[i].telephone+"</td>");
+                  $("#owners tr:last").append("<td>"+names.join(' ')+"</td>");
           }
       },
-        error: function (){
+        error: function (e){
             console.log("ERROR : ", e);
         }
     })
@@ -129,7 +130,6 @@ function getPetById(){
 
 function submitPetData()
 {
-    let pet  = new Object();
     let url = new URL(window.location.href);
     const params = url.searchParams;
     let ownerId = params.get('ownerId');
@@ -141,7 +141,8 @@ function submitPetData()
         type: "POST",
         contentType: "application/json",
         url: "/submitPetData?ownerId="+ownerId+"&petId="+petId,
-        data: JSON.stringify({'name':$("#name").val(),
+        data: JSON.stringify
+        ({'name':$("#name").val(),
             'birthDate':$("#dob").val(),
             'petType': $('#petTypes').find(":selected").val() ,'id': Number($('#id').val())}),
         dataType: 'json',
@@ -160,3 +161,8 @@ function editPet(ownerId,petId){
 
 }
 
+function findOwner()
+{
+    let lastName = $("#lastName").val();
+    window.location.href = "/owners?lastName="+lastName;
+}
