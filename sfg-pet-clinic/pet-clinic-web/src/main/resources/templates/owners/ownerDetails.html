@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+
+  <body>
+  
+  
+    <h2>Owner Information</h2>
+  
+  
+    <table class="table table-striped" >
+      <tr>
+        <th>Name</th>
+        <td><b id="name"></b></td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td ><b id="address"></b></td>
+      </tr>
+      <tr>
+        <th>City</th>
+        <td ><b id="city"></b></td>
+      </tr>
+      <tr>
+        <th>Telephone</th>
+        <td ><b id="telephone"></b></td>
+      </tr>
+    </table>
+  
+    <a  class="btn btn-primary">Edit
+      Owner</a>
+    <a  class="btn btn-primary">Add
+      New Pet</a>
+  
+    <br />
+    <br />
+    <br />
+    <h2>Pets and Visits</h2>
+  
+    <table class="table table-striped" id="pettable">
+
+    </table>
+
+      <tr id="row">
+        <td valign="top">
+          <dl class="dl-horizontal">
+            <dt>Name</dt>
+            <dd id="petName"></dd>
+            <dt>Birth Date</dt>
+              <dd id="petBirthDate"></dd>
+            <dt>Type</dt>
+              <dd id="petType"></dd>
+          </dl>
+        </td>
+        <td valign="top">
+          <table class="table-condensed">
+            <thead>
+            <tr>
+              <th>Visit Date</th>
+              <th>Description</th>
+            </tr>
+            </thead>
+            <tr>
+              <td id="visitDate"></td>
+              <td id="description"></td>
+            </tr>
+            <tr>
+              <td id="editPet"></td>
+              <td id="addVisit"></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    <script th:src="@{/js/Main.js}"></script>
+    <script type="text/javascript">setOwnerDetailById()</script>
+  </body>
+
+</html>

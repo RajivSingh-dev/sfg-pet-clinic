@@ -10,6 +10,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -60,7 +61,7 @@ ownerRepository.deleteById(aLong);
     }
 
     @Override
-    public Owner findByLastName(String lastName) {
-        return ownerRepository.findByLastName(lastName);
+    public Set<Owner> findAllByLastName(String lastName) {
+        return ownerRepository.findAllByLastNameLike(lastName);
     }
 }

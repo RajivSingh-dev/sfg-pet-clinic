@@ -4,7 +4,10 @@ package guru.springframework.sfgpetclinic.repositories;
 import guru.springframework.sfgpetclinic.model.Owner;
 import org.springframework.data.repository.CrudRepository;
 
-public interface OwnerRepository extends CrudRepository<Owner,Long> {
+import java.util.List;
+import java.util.Set;
 
-    Owner findByLastName(String lastName);
+public interface OwnerRepository extends CrudRepository<Owner,Long> {
+    Set<Owner> findAllByLastNameLike(String lastName);
+
 }
