@@ -61,7 +61,7 @@ ownerRepository.deleteById(aLong);
     }
 
     @Override
-    public Set<Owner> findAllByLastName(String lastName) {
+    public Set<Owner> findAllByLastNameLike(String lastName) {
         return ownerRepository.findAllByLastNameLike(lastName);
     }
 }
