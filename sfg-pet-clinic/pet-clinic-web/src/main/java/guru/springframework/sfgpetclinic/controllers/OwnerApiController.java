@@ -23,7 +23,7 @@ public class OwnerApiController {
     public Set<Owner> getOwnerData(@RequestParam String lastName)
     {
          if(!lastName.isEmpty()) {
-            return ownerService.findAllByLastNameLike(lastName);
+            return ownerService.findAllByLastNameLike("%" + lastName + "%");
         }
         else
             return ownerService.findAll();
