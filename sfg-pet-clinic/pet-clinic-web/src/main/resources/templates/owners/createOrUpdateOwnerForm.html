@@ -1,0 +1,23 @@
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+
+<body>
+
+  <h2>Owner</h2>
+  <form class="form-horizontal" id="add-owner-form" >
+    <div class="form-group has-feedback">
+      <input id="name" type="text"/>
+      <input  type="text"/>
+      <input type="text"/>
+      <input type="text"/>
+      <input type="text"/>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button>Add
+          Owner</button>
+      </div>
+    </div>
+  </form>
+</body>
+</html>
