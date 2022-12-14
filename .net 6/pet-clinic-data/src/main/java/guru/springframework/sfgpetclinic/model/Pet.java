@@ -19,7 +19,7 @@ import java.util.Set;
 @Table(name = "pets")
 public class Pet extends BaseEntity{
 
-    private Long petId;
+
 
     @Column(name = "name")
     private String name;

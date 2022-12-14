@@ -1,5 +1,6 @@
 package guru.springframework.sfgpetclinic.controllers;
 
+import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.model.PetType;
 import guru.springframework.sfgpetclinic.services.OwnerService;
@@ -30,14 +31,22 @@ public class PetApiController {
     }
 
     @ModelAttribute("owner")
-    public Pet petById(@RequestParam  Long ownerId,@RequestParam Long petId)
+    public Owner findOwner(@RequestParam  Long ownerId)
     {
-      return petService.findByPetIdAndOwnerId(petId,ownerId);
+      return ownerService.findById(ownerId);
     }
+
+
     @PostMapping({"/submitPetData"})
     public Pet updatePetById(@RequestParam  Long ownerId, @RequestBody Pet pet)
     {
       return petService.updateByPetIdAndOwnerId(ownerId,pet);
+    }
+
+    @GetMapping({"/getPetData"})
+    public Pet getPetById(@RequestParam  Long petId,@RequestParam Long ownerId)
+    {
+      return petService.findByPetIdAndOwnerId(petId,ownerId);
     }
 
 

@@ -90,18 +90,19 @@ function setOwnerDetailById(){
            $("#address").text(data.address);
            $("#city").text(data.city);
            $("#telephone").text(data.telephone);
-
+            $("#row .petName").text("abc");
             for (let i = 0; i < data.pets.length; i++) {
-               $("#petName").text(data.pets[i].name);
-               $("#petBirthDate").text(data.pets[i].birthDate);
-               $("#petType").text(data.pets[i].petType.name);
-               $("#visitDate").text(data.pets[i].petType.name);
-               $("#description").text(data.pets[i].petType.name);
-               $("#editPet").html("<a href='#' onclick='editPet("+ownerId+","+data.pets[i].id+")'>Edit Pet</a>");
-               $("#addVisit").html("<a href='#' onclick='addVisit("+ownerId+","+data.pets[i].id+")'>Add Visit</a>");
-
+               $("#row .petName").text(data.pets[i].name);
+               $("#row .petBirthDate").text(data.pets[i].birthDate);
+               $("#row .petType").text(data.pets[i].petType.name);
+               $("#row .visitDate").text(data.pets[i].petType.name);
+               $("#row .description").text(data.pets[i].petType.name);
+               $("#row .editPet").html("<a href='#' onclick='editPet("+ownerId+","+data.pets[i].id+")'>Edit Pet</a>");
+               $("#row .addVisit").html("<a href='#' onclick='addVisit("+ownerId+","+data.pets[i].id+")'>Add Visit</a>");
+                $("#row").children().clone().appendTo("#td1");
+                $("#table").clone().appendTo("#td2");
             }
-            $("#row").clone().appendTo("#pettable");
+
         },
         error: function() {
             alert("unable to create the record");
@@ -118,12 +119,22 @@ function getPetById(){
     let url = new URL(window.location.href);
     const params = url.searchParams;
     let ownerId = params.get('ownerId');
-    let petId = params.get('ownerId');
+    let petId = params.get('petId');
+
+    if(petId == null)
+    {
+        $("#button").html('Add Pet');
+        return;
+    }
+
+    $("#button").html('Update Pet');
+
+
 
     $.ajax({
         type: "GET",
         contentType: "application/json",
-        url: "/petData?ownerId="+ownerId+"&petId="+petId,
+        url: "/getPetData?ownerId="+ownerId+"&petId="+petId,
         dataType: 'json',
         success:function (data){
                 $("#name").val(data.name);
@@ -144,18 +155,17 @@ function submitPetData()
     let url = new URL(window.location.href);
     const params = url.searchParams;
     let ownerId = params.get('ownerId');
-    let petId = params.get('ownerId');
 
 
 
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/submitPetData?ownerId="+ownerId+"&petId="+petId,
+        url: "/submitPetData?ownerId="+ownerId,
         data: JSON.stringify
         ({'name':$("#name").val(),
             'birthDate':$("#dob").val(),
-            'petType': $('#petTypes').find(":selected").val() ,'id': Number($('#id').val())}),
+            'petType': $('#petTypes').find(":selected").val()}),
         dataType: 'json',
         success:function (){
             ownerDetailsView(ownerId);
@@ -216,4 +226,11 @@ function redirectToUpdateOwner()
     const params = url.searchParams;
     let ownerId = params.get('ownerId');
     window.location.href = "/owners/update?ownerId=" + ownerId;
+}
+
+function redirectToAddPet(){
+    let url = new URL(window.location.href);
+    const params = url.searchParams;
+    let ownerId = params.get('ownerId');
+    window.location.href = '/petForm?ownerId='+ownerId;
 }

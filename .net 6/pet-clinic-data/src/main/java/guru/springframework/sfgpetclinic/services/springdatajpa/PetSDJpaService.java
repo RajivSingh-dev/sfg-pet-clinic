@@ -65,11 +65,15 @@ public class PetSDJpaService implements PetService {
              owner.addPet(pet);
 
          }
-              Owner savedPet = ownerRepository.save(owner);
+              Owner savedOwner = ownerRepository.save(owner);
 
-              Optional<Pet> savedPetOptional = savedPet.getPets().stream().filter(pet1 -> pet1.getId().equals(pet.getId())).findFirst();
+              Optional<Pet> savedPetOptional = savedOwner.getPets().stream().filter(pet1 -> pet1.getId().equals(pet.getId())).findFirst();
 
 
+              if (!savedPetOptional.isPresent())
+              {
+                 savedPetOptional = savedOwner.getPets().stream().filter(petOwner -> petOwner.getName().equals(pet.getName())).findFirst();
+              }
 
               return savedPetOptional.get();
         }

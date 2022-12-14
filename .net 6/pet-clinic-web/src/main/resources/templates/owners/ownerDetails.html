@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
-<html xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:display="http://www.w3.org/1999/xhtml"
+      th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
 
   <body>
   
@@ -30,7 +30,7 @@
   
     <a  class="btn btn-primary"  onclick="redirectToUpdateOwner()">Edit
       Owner</a>
-    <a  class="btn btn-primary">Add
+    <a  class="btn btn-primary" onclick="redirectToAddPet()">Add
       New Pet</a>
   
     <br />
@@ -39,39 +39,45 @@
     <h2>Pets and Visits</h2>
   
     <table class="table table-striped" id="pettable">
+      <tr  >
+        <td valign="top" id="td1">
 
-    </table>
-
-      <tr id="row">
-        <td valign="top">
-          <dl class="dl-horizontal">
-            <dt>Name</dt>
-            <dd id="petName"></dd>
-            <dt>Birth Date</dt>
-              <dd id="petBirthDate"></dd>
-            <dt>Type</dt>
-              <dd id="petType"></dd>
-          </dl>
         </td>
-        <td valign="top">
-          <table class="table-condensed">
-            <thead>
-            <tr>
-              <th>Visit Date</th>
-              <th>Description</th>
-            </tr>
-            </thead>
-            <tr>
-              <td id="visitDate"></td>
-              <td id="description"></td>
-            </tr>
-            <tr>
-              <td id="editPet"></td>
-              <td id="addVisit"></td>
-            </tr>
-          </table>
+        <td valign="top" id="td2">
+
         </td>
       </tr>
+    </table>
+<div id="row" hidden>
+    <dl class="dl-horizontal" >
+      <dt>Name</dt>
+      <dd class="petName"></dd>
+      <dt>Birth Date</dt>
+      <dd class="petBirthDate"></dd>
+      <dt>Type</dt>
+      <dd class="petType"></dd>
+    </dl>
+</div>
+    <table class="table-condensed" id="table">
+      <thead hidden>
+      <tr>
+        <th>Visit Date</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody hidden>
+      <tr>
+        <td class="visitDate"></td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="editPet"></td>
+        <td class="addVisit"></td>
+      </tr>
+      </tbody>
+    </table>
+
+
     <script th:src="@{/js/Main.js}"></script>
     <script type="text/javascript">setOwnerDetailById()</script>
   </body>
